@@ -10,6 +10,7 @@ import (
 
 func main() {
 	http.HandleFunc("/", routes.HealthCheck())
+	http.HandleFunc("/files", routes.UploadFile())
 
 	port := os.Getenv("PORT")
 	if port == "" {

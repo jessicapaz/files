@@ -1,0 +1,14 @@
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - '8000:8000'
+    depends_on:
+      - mongo
+    command: 'go run main.go'
+  mongo:
+    container_name: mongo
+    image: 'mongo:latest'
+    ports:
+      - '27017:27017'

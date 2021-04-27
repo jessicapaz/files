@@ -39,9 +39,9 @@ curl --request GET \
 
 **Request:**
 
-`GET` `/files/<id>`
+`GET` `/files/<id>/download`
 
 ```bash
 curl --request GET \
-  --url http://127.0.0.1:8000/files/<FILE_ID>
+  --url http://127.0.0.1:8000/files/<FILE_ID>/download
 ```

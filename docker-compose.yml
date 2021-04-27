@@ -5,7 +5,7 @@ services:
     env_file:
       - .env
     ports:
-      - '8000:8000'
+      - '$PORT:$PORT'
     depends_on:
       - mongo
     command: 'go run main.go'

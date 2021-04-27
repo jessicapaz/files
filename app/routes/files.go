@@ -55,7 +55,15 @@ func UploadFile() http.HandlerFunc {
 			if err != nil {
 				w.WriteHeader(http.StatusInternalServerError)
 			} else {
+				var fileResp models.FileResponse
+				fileResp.ID = fileModel.ID.Hex()
+				fileResp.Name = fileModel.Name
+				fileResp.CreatedAt = fileModel.CreatedAt
+				fileResp.URL = fileResp.BuildURL(r, fileResp.ID)
+
+				byteResp, _ := json.Marshal(fileResp)
 				w.WriteHeader(http.StatusCreated)
+				w.Write(byteResp)
 			}
 		default:
 			w.WriteHeader(http.StatusMethodNotAllowed)
@@ -95,11 +103,7 @@ func ListFiles() http.HandlerFunc {
 			fileResp.Name = file.Name
 			fileResp.CreatedAt = file.CreatedAt
 
-			URLScheme := "https"
-			if r.TLS == nil {
-				URLScheme = "http"
-			}
-			fileResp.URL = fmt.Sprintf("%s://%s/files/%s/download", URLScheme, r.Host, fileResp.ID)
+			fileResp.URL = fileResp.BuildURL(r, fileResp.ID)
 			resp = append(resp, fileResp)
 		}
 

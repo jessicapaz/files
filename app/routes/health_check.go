@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/jessicapaz/kuehne-nagel-challenge/app/models"
+	"github.com/jessicapaz/files/app/models"
 )
 
 // HealthCheck returns a successful message if the API is up and running

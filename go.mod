@@ -1,4 +1,4 @@
-module github.com/jessicapaz/kuehne-nagel-challenge
+module github.com/jessicapaz/files
 
 go 1.16
 

@@ -6,8 +6,8 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
-	"github.com/jessicapaz/kuehne-nagel-challenge/app/routes"
-	"github.com/jessicapaz/kuehne-nagel-challenge/app/services"
+	"github.com/jessicapaz/files/app/routes"
+	"github.com/jessicapaz/files/app/services"
 	log "github.com/sirupsen/logrus"
 )
 

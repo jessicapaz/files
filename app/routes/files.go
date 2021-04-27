@@ -10,8 +10,8 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
-	"github.com/jessicapaz/kuehne-nagel-challenge/app/models"
-	"github.com/jessicapaz/kuehne-nagel-challenge/app/services"
+	"github.com/jessicapaz/files/app/models"
+	"github.com/jessicapaz/files/app/services"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 

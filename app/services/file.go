@@ -5,8 +5,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/jessicapaz/kuehne-nagel-challenge/app/db"
-	"github.com/jessicapaz/kuehne-nagel-challenge/app/models"
+	"github.com/jessicapaz/files/app/db"
+	"github.com/jessicapaz/files/app/models"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo/options"

@@ -3,6 +3,7 @@ package services
 import (
 	"context"
 	"log"
+	"time"
 
 	"github.com/jessicapaz/kuehne-nagel-challenge/app/db"
 	"github.com/jessicapaz/kuehne-nagel-challenge/app/models"
@@ -94,4 +95,29 @@ func (fs *FileService) Get(id string) (*models.File, error) {
 		return nil, err
 	}
 	return result, err
+}
+
+// DeleteOldFiles deletes files older than a given time
+func (fs *FileService) DeleteOldFiles(ttl int) error {
+	client, err := db.Client()
+	if err != nil {
+		return err
+	}
+
+	collection := client.Database("challenge").Collection("files")
+
+	now := time.Now()
+	datetime := now.Add(time.Duration(-ttl) * time.Minute)
+
+	filter := bson.M{
+		"createdat": bson.M{
+			"$lte": datetime,
+		},
+	}
+	_, err = collection.DeleteMany(context.TODO(), filter)
+
+	if err != nil {
+		return err
+	}
+	return nil
 }

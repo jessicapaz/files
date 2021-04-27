@@ -3,9 +3,11 @@ package main
 import (
 	"net/http"
 	"os"
+	"strconv"
 
 	"github.com/gorilla/mux"
 	"github.com/jessicapaz/kuehne-nagel-challenge/app/routes"
+	"github.com/jessicapaz/kuehne-nagel-challenge/app/services"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -23,7 +25,13 @@ func main() {
 		port = "8000"
 	}
 
-	if err := http.ListenAndServe(":"+port, nil); err != nil {
-		log.Error(err)
-	}
+	fileService := services.NewFileService()
+	ttl, _ := strconv.Atoi(os.Getenv("TTL"))
+	go func() {
+		for {
+			fileService.DeleteOldFiles(ttl)
+		}
+	}()
+
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }

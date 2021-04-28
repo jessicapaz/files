@@ -45,7 +45,6 @@ func (fs *FileService) List() ([]*models.File, error) {
 	collection := client.Database("challenge").Collection("files")
 
 	findOptions := options.Find()
-	findOptions.SetLimit(2)
 
 	var results []*models.File
 
